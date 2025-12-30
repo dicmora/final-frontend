@@ -1,0 +1,46 @@
+.circle__container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+.circle__preloader-circle {
+  display: block;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #1a1b22;
+  border-bottom-color: #d1d2d600;
+  border-radius: 50%;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  animation: spin 0.75s infinite linear;
+}
+
+.preloader__text-container {
+  display: block;
+  position: absolute;
+  margin-top: 198px;
+  font-family: Roboto Slab, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  leading-trim: NONE;
+  text-align: center;
+  color: #6c707a;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+  width: max-content;
+  text-align: center;
+  padding-top: 24px;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

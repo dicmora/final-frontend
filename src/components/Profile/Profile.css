@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+}
+.profile__clothing-items {
+  background-color: #fff;
+}
