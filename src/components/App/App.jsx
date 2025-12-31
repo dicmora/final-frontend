@@ -159,22 +159,14 @@ function App() {
       });
   };
 
-  const handleRegistration = ({ name, email, password }) => {
-    return auth
-      .register({ name, email, password })
-      .then(() => auth.authorize({ email, password }))
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
-          return auth.getUserInfo(data.token).then((userData) => {
-            setCurrentUser(userData);
-            setIsLoggedIn(true);
-          });
-        } else {
-          return Promise.reject("No token received");
-        }
-      })
-      .catch((err) => console.error("Registration error:", err));
+  const handleRegistration = async ({ name, email, password }) => {
+    try {
+      await auth.register({ name, email, password });
+      return true;
+    } catch (err) {
+      console.error("Registration error:", err);
+      throw err;
+    }
   };
 
   const handleLogin = ({ email, password }) => {

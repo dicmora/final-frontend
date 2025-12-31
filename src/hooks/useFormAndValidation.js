@@ -51,7 +51,7 @@ export function useFormAndValidation(initialValuesProp, options = {}) {
         if (isAvailable) {
           setWarnings((prev) => ({
             ...prev,
-            email: "This Email not available",
+            email: "This Email is not available",
           }));
         } else {
           setWarnings((prev) => ({ ...prev, email: "" }));

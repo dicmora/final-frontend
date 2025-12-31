@@ -12,10 +12,10 @@ function request(url, { method = "GET", body, headers = {} } = {}) {
   }).then(checkResponse);
 }
 
-export const register = ({ name, email, password }) =>
+export const register = ({ email, password, name }) =>
   request(`${BASE_URL}/signup`, {
     method: "POST",
-    body: { name, email, password },
+    body: { email, password, name },
   });
 
 export const authorize = ({ email, password }) =>
