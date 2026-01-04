@@ -29,8 +29,7 @@ function NewsCard({
     });
   }
 
-  const handleSave = (evt) => {
-    evt.stopPropagation();
+  const handleSave = () => {
     if (!currentUser) {
       setShowLoginMessage(true);
       setTimeout(() => setShowLoginMessage(false), 2000);
@@ -64,8 +63,7 @@ function NewsCard({
     onArticleSave(articleToSave);
   };
 
-  const handleDelete = (evt) => {
-    evt.stopPropagation();
+  const handleDelete = () => {
     if (onDeleteArticle) onDeleteArticle(article._id);
   };
 
@@ -113,10 +111,7 @@ function NewsCard({
         <>
           <button
             className={saveButtonClassName}
-            onClick={(evt) => {
-              evt.stopPropagation();
-              handleSave();
-            }}
+            onClick={handleSave}
             aria-label="save article"
           />
           {showLoginMessage && (
