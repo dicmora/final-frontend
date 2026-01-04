@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import "./Header.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
@@ -51,7 +51,9 @@ function Header({ setActiveModal, isLoggedIn, onSearch, handleLogout }) {
       {!isSavedPage && (
         <section className="main__login-prompt">
           <div className="main__login-text--container">
-            <h1 className="main__login-text">What's going on in the world?</h1>
+            <h1 className="main__login-text">
+              {"What's going on in the world?"}
+            </h1>
             <p className="main__login-subtext">
               Find the latest news on any topic and save them in your personal
               account.

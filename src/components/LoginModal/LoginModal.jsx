@@ -8,6 +8,7 @@ export default function LoginModal({
   onLogin,
   onSignupOpen,
   isLoading,
+  loginError,
 }) {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation(
@@ -74,13 +75,13 @@ export default function LoginModal({
           required
         />
       </label>
-
+      {loginError && <span className="modal__error">{loginError}</span>}
       <div className="modal__button-group">
         <button
           type="submit"
           className={`modal__login-btn ${
-            isFormFilled && isValid && !isLoading ? "enabled" : "inactive"
-          }`}
+            activeButton === "login" ? "clicked" : ""
+          } ${isFormFilled && isValid && !isLoading ? "enabled" : "inactive"}`}
           disabled={!isFormFilled || !isValid || isLoading}
         >
           {isLoading ? "Signing in..." : "Sign In"}

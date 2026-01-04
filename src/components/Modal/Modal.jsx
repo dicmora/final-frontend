@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import useModalClose from "../../hooks/useModalClose";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 export const Modal = ({ name, onClose, isOpen, children, size = "medium" }) => {
   useModalClose(isOpen, onClose);

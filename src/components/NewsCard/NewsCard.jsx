@@ -1,7 +1,6 @@
 import "./NewsCard.css";
 import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { stripHtml } from "../../utils/utils.js";
 import { isValidUrl } from "../../utils/utils.js";
 
 function NewsCard({
@@ -15,14 +14,12 @@ function NewsCard({
   const [showLoginMessage, setShowLoginMessage] = useState(false);
   const [showDeleteMessage, setShowDeleteMessage] = useState(false);
 
-const isSaved = currentUser
-  ? savedArticles?.some((saved) => {
-      if (saved.link && article.url) return saved.link === article.url;
-      return saved.title?.trim() === article.title?.trim();
-    })
-  : false;
-
-
+  const isSaved = currentUser
+    ? savedArticles?.some((saved) => {
+        if (saved.link && article.url) return saved.link === article.url;
+        return saved.title?.trim() === article.title?.trim();
+      })
+    : false;
 
   function getCurrentFormattedDate() {
     return new Date().toLocaleDateString("en-US", {
@@ -32,7 +29,8 @@ const isSaved = currentUser
     });
   }
 
-  const handleSave = () => {
+  const handleSave = (evt) => {
+    evt.stopPropagation();
     if (!currentUser) {
       setShowLoginMessage(true);
       setTimeout(() => setShowLoginMessage(false), 2000);
@@ -66,7 +64,8 @@ const isSaved = currentUser
     onArticleSave(articleToSave);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (evt) => {
+    evt.stopPropagation();
     if (onDeleteArticle) onDeleteArticle(article._id);
   };
 
@@ -76,36 +75,48 @@ const isSaved = currentUser
 
   return (
     <li className="card">
-      <div className="card__image-wrapper">
-        {isSavedPage && article.source && (
-          <p className="card__keyword">{article.source}</p>
-        )}
-        <img
-          className="card__image"
-          src={article.image || "/fallback-image.png"}
-          alt={article.title || "News image"}
-          onError={(e) => (e.target.src = "/fallback-image.png")}
-        />
-      </div>
-
-      <div className="card__content">
-        <div className="card__text-group">
-          <p className="card__date">{getCurrentFormattedDate()}</p>
-          <h2 className="card__name">{article.title}</h2>
-
-          <p className="card__description">
-            {article.text && article.text !== "No description available"
-              ? article.text
-              : "No description available"}
-          </p>
+      <div
+        className="card__OnClick"
+        onClick={() => {
+          if (!article.link) return;
+          window.open(article.link, "_blank", "noopener,noreferrer");
+        }}
+      >
+        <div className="card__image-wrapper">
+          {isSavedPage && article.source && (
+            <p className="card__keyword">{article.source}</p>
+          )}
+          <img
+            className="card__image"
+            src={article.image || "/fallback-image.png"}
+            alt={article.title || "News image"}
+            onError={(e) => (e.target.src = "/fallback-image.png")}
+          />
         </div>
-        <div className="card__footer">{article.source}</div>
+
+        <div className="card__content">
+          <div className="card__text-group">
+            <p className="card__date">{getCurrentFormattedDate()}</p>
+            <h2 className="card__name">{article.title}</h2>
+
+            <p className="card__description">
+              {article.text && article.text !== "No description available"
+                ? article.text
+                : "No description available"}
+            </p>
+          </div>
+          <div className="card__footer">{article.source}</div>
+        </div>
       </div>
+
       {!isSavedPage && (
         <>
           <button
             className={saveButtonClassName}
-            onClick={handleSave}
+            onClick={(evt) => {
+              evt.stopPropagation();
+              handleSave();
+            }}
             aria-label="save article"
           />
           {showLoginMessage && (

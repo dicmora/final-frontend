@@ -3,14 +3,14 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "../Header/Header.css";
 
-function Navigation({ isLoggedIn, onLoginClick, onSignupClick, onLogout }) {
+function Navigation({ isLoggedIn, onLoginClick, onLogout }) {
   const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
   const isSavedPage = location.pathname === "/saved-news";
 
   return (
-    <div className="header__top">
+    <nav className="header__top">
       <h3 className="header__name">News Explorer</h3>
 
       <button className="header__home-btn" onClick={() => navigate("/")}>
@@ -50,7 +50,7 @@ function Navigation({ isLoggedIn, onLoginClick, onSignupClick, onLogout }) {
           </button>
         </div>
       )}
-    </div>
+    </nav>
   );
 }
 

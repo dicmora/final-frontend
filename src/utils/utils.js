@@ -12,5 +12,10 @@ export function stripHtml(html) {
 }
 
 export const isValidUrl = (url) => {
-  return true;
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
 };

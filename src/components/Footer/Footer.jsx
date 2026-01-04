@@ -3,25 +3,23 @@ import { useLocation } from "react-router-dom";
 
 function Footer() {
   const location = useLocation();
-  const isProfilePage = location.pathname === "/profile";
+  const isSavedPage = location.pathname === "/saved-news";
 
   return (
     <footer className="footer">
-      {!isProfilePage && (
+      {!isSavedPage && (
         <div className="footer__author">
           <div className="footer__author-image"></div>
           <div className="footer__about">
             <h3 className="footer__about-title">About the Author</h3>
             <p className="footer__author-description">
-              My name is Dickson, and I am a front-end developer specializing in
-              building responsive, user-friendly web interfaces. I work with
-              technologies such as HTML, CSS, JavaScript, React, and other
-              modern frameworks to create visually appealing and efficient
-              solutions. Through my experience with this Triple Ten, I have
-              gained practical skills on real world projects and learned how to
-              deliver high quality results. I am passionate about applying my
-              expertise to help clients achieve their goals with effective and
-              engaging web applications.
+              My name is Dickson, I am a front-end developer specializing in
+              responsive, user-friendly web interfaces. I work with HTML, CSS,
+              JavaScript, React, and modern frameworks to build efficient,
+              visually appealing applications. Through my experience at Triple
+              Ten, I’ve gained hands-on experience delivering high-quality
+              solutions on real-world projects and am passionate about helping
+              clients achieve their goals with effective web applications.
             </p>
           </div>
         </div>
@@ -31,7 +29,7 @@ function Footer() {
         <div className="footer__year">
           © 2024 Supersite, Powered by News API
         </div>
-        <div className="footer__links">
+        <nav className="footer__links">
           <div className="footer__nav-links">
             <a href="/" className="footer__link">
               Home
@@ -70,7 +68,7 @@ function Footer() {
               />
             </a>
           </div>
-        </div>
+        </nav>
       </div>
     </footer>
   );

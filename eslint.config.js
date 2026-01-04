@@ -6,11 +6,15 @@ import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
   { ignores: ["dist"] },
+
   {
     files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        process: "readonly",
+      },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
@@ -28,6 +32,9 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
+
+      "no-unused-vars": ["warn", { varsIgnorePattern: "^React$" }],
+
       "react/jsx-no-target-blank": "off",
       "react-refresh/only-export-components": [
         "warn",
@@ -36,10 +43,4 @@ export default [
       "react/prop-types": 0,
     },
   },
-  overrides: [
-    {
-      // Without this, `npx eslint .` doesn't run on jsx files.
-      files: ["*.js", "*.jsx"],
-    },
-  ],
 ];

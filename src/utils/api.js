@@ -1,5 +1,4 @@
 import { BASE_URL, NEWS_API_BASE_URL } from "./constants";
-import { stripHtml } from "../utils/utils.js";
 import { isValidUrl } from "../utils/utils.js";
 
 function checkResponse(res) {

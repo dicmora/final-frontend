@@ -104,6 +104,9 @@
 
 .card__image-wrapper {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f6f7;
 }
 
 .card__image {
@@ -127,14 +130,14 @@
   justify-content: space-between;
   padding: 16px 16px 0 16px;
   margin: 0;
-  flex: 1;
+  flex-grow: 1;
 }
 
 .card__date {
   color: #b6bcbf;
   margin-top: 0;
   padding: 0;
-  font-family: Source Sans Pro;
+  font-family: Source Sans Pro, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   leading-trim: NONE;
@@ -154,12 +157,13 @@
 .card__name {
   margin: 0;
   padding: 0;
-  font-family: Roboto Slab Helvetica, sans-serif;
+  font-family: Roboto Slab, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 26px;
   leading-trim: NONE;
   color: #1a1b22;
-  max-height: calc(28px * 4);
+  margin-bottom: 16px;
+  max-height: calc(28px * 2);
   overflow: hidden;
 }
 
@@ -173,20 +177,21 @@
   leading-trim: NONE;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 6;
   overflow: hidden;
 }
 
 .card__footer {
   color: #b6bcbf;
-  font-family: Roboto Slab Helvetica, sans-serif;
+  font-family: Roboto Slab, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 16px;
   leading-trim: NONE;
   line-height: 20px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  padding: 0 16px 16px 0px;
+  margin-top: 24px;
+  padding: 0 16px 0 0px;
 }
 .saved-news-articles__list {
   margin-top: 62px;
@@ -288,6 +293,15 @@
   border-radius: 10px;
   margin: 0;
   padding: 0 22px 0px;
+}
+
+.card__OnClick {
+  cursor: pointer;
+}
+
+.card__OnClick:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
 }
 
 @media (max-width: 768px) {
@@ -481,5 +495,12 @@
   }
   .card__date {
     font-size: 12px;
+  }
+}
+@media (max-width: 320px) {
+  .card {
+    width: 100%;
+    max-width: 288px;
+    height: 440px;
   }
 }

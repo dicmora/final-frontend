@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import Preloader from "../Preloader/preloader";
 import "./Main.css";

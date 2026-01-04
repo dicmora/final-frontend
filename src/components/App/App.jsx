@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Main from "../Main/Main";
-import { isValidUrl } from "../../utils/utils.js";
 import { BASE_URL } from "../../utils/constants";
 import RegisterModal from "../RegistrationModal/RegistrationModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -98,8 +97,7 @@ function App() {
       fetchResults
         .then((dataset) => {
           const normalized = dataset.map((n, index) => {
-            const text =
-              n.content?.trim() ||
+            n.content?.trim() ||
               n.description?.trim() ||
               "No description available";
 
@@ -111,7 +109,7 @@ function App() {
               text: n.text,
               date: n.publishedAt || new Date().toISOString(),
               source: source || "Unknown",
-              link: n.url || "#",
+              link: n.url || n.link,
               image: n.urlToImage || n.image || "/fallback-image.png",
             };
           });
@@ -148,11 +146,8 @@ function App() {
     }
 
     removeSavedArticle(id, token)
-      .then((res) => {
-        setSavedArticles((prev) => {
-          const next = prev.filter((a) => a._id !== id);
-          return next;
-        });
+      .then(() => {
+        setSavedArticles((prev) => prev.filter((a) => a._id !== id));
       })
       .catch((err) => {
         console.error(err);
@@ -260,8 +255,9 @@ function App() {
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             onLogin={handleLogin}
-            onSignupOpen={() => setActiveModal("register")}
+            onSignupOpen={() => openModal("register")}
             isLoading={isLoading}
+            loginError={loginError}
           />
 
           <Footer />
