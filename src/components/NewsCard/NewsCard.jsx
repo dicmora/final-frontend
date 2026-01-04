@@ -3,6 +3,13 @@ import { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { isValidUrl } from "../../utils/utils.js";
 
+function cleanText(text = "") {
+  return text
+    .replace(/.*AFP\/Getty Images.*/gi, "")
+    .replace(/<[^>]+>/g, "")
+    .trim();
+}
+
 function NewsCard({
   article,
   onArticleSave,
@@ -46,13 +53,14 @@ function NewsCard({
       return <img src="no-image.png" alt="No image available" />;
     })();
 
-    const text = article.text?.trim() || "No description";
+    const text = cleanText(article.text) || "No description";
 
     const source = (article.source?.name || article.source || "Unknown").trim();
 
     const articleToSave = {
       keyword: article.keyword?.trim() || "news",
-      title: article.title?.trim() || "No title",
+      title: cleanText(article.title) || "No title",
+
       text,
       date: article.publishedAt || new Date().toISOString(),
       source,
@@ -95,11 +103,11 @@ function NewsCard({
         <div className="card__content">
           <div className="card__text-group">
             <p className="card__date">{getCurrentFormattedDate()}</p>
-            <h2 className="card__name">{article.title}</h2>
+            <h2 className="card__name">{cleanText(article.title)}</h2>
 
             <p className="card__description">
               {article.text && article.text !== "No description available"
-                ? article.text
+                ? cleanText(article.text)
                 : "No description available"}
             </p>
           </div>
