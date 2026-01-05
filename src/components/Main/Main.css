@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .main {
+    max-width: 768px;
+  }
+}
+@media (max-width: 480px) {
+  .main {
+    width: 100%;
+  }
+}

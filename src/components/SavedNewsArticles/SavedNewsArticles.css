@@ -1,0 +1,130 @@
+.savednews__section {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.savednews__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 104px;
+  padding-top: 40px;
+}
+
+.savednews__title {
+  font-family: Roboto Slab, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a1b2280;
+  margin: 0;
+}
+
+.savednews__count {
+  font-family: Roboto Slab, Helvetica, sans-serif;
+  font-weight: 400;
+  width: 530px;
+  font-size: 40px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.savednews__keywords {
+  font-family: Roboto Slab, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #1a1b22;
+  margin: 0;
+  padding-bottom: 32px;
+}
+
+.savednews__list-wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: #f5f6f7;
+  width: 1440px;
+  width: 100%;
+  opacity: 1;
+}
+
+.savednews__list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  margin: 0 auto 62px;
+  padding: 32px 16px 0;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.savednews__list li.card {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .savednews__section,
+  .savednews__list-wrapper {
+    max-width: 768px;
+  }
+
+  .savednews__list {
+    gap: 8px;
+    margin: 0 30px;
+    padding: 0;
+  }
+
+  .savednews__header {
+    margin-left: 40px;
+  }
+
+  .savednews__count {
+    font-size: 32px;
+    width: auto;
+  }
+
+  .savednews__list-wrapper {
+    padding-bottom: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .savednews__section,
+  .savednews__list-wrapper {
+    width: 100%;
+  }
+
+  .savednews__header {
+    gap: 12px;
+    margin: 0 16px;
+    padding: 0;
+  }
+
+  .savednews__count {
+    font-size: 30px;
+    width: 288px;
+    height: 68px;
+    margin-bottom: 50px;
+  }
+
+  .savednews__list {
+    gap: 12px;
+    margin: 0 34px;
+    padding: 0;
+  }
+
+  .savednews__list-wrapper {
+    padding-bottom: 24px;
+  }
+
+  .savednews__title {
+    font-size: 12px;
+    top: 64px;
+    padding: 16px 0 16px 0;
+  }
+}
